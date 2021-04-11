@@ -14,6 +14,19 @@ const timestamp =  new Date().getTime();
 
 let testCoin = new Blockchain();
 
+testCoin.createTransaction(new Transaction('address1','address2', 100));
+testCoin.createTransaction(new Transaction('address2','address1', 50));
+
+console.log("\n Starting up the 7 dwarfs...");
+testCoin.minePendingTransactions('mystery-address');
+
+console.log('\n Mystery Balance: ', testCoin.getBalanceOfAddress('mystery-address'));
+
+console.log("the next day...")
+testCoin.minePendingTransactions('mystery-address');
+console.log('\n Mystery Balance: ', testCoin.getBalanceOfAddress('mystery-address'));
+
+/*
 testCoin.addBlock(new Block (1,timestamp, {amount: 4}));  //hash is generated inside the block
 
 testCoin.addBlock(new Block (2,timestamp, {amount: 10}));
@@ -41,5 +54,5 @@ function renderChainList(element, index, arr ) {
 
     li.innerHTML=li.innerHTML +"<b>Block:</b> " + element.index + " <b>Hash:</b> " + element.hash + " <b>Balance:</b> " + element.data.amount;
 }//end render chain list
-
+*/
 </script>
