@@ -21,14 +21,7 @@ testCoin.addBlock(new Block (2,timestamp, {amount: 10}));
 console.log("TSC ", testCoin );
 console.log("UIs chain valid 1: ", testCoin.validate());
 
-testCoin.chain[1].data = {amount: 100000}
-
-console.log("change data: ", testCoin.validate());
-
-testCoin.chain[1].hash = testCoin.chain[1].createHash();
-console.log("change hash: ", testCoin.validate());
-
-console.log("current chain: ", testCoin.chain );
+console.log("current chain: ", testCoin.chain[1].hash );
 
 for (var i=1 ; i < testCoin.chain.length ; i++ ) {
   console.log("Block: ", testCoin.chain[i].index," hash: ", testCoin.chain[i].hash )
