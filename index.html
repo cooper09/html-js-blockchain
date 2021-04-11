@@ -26,10 +26,9 @@ console.log("the next day...")
 testCoin.minePendingTransactions('mystery-address');
 console.log('\n Mystery Balance: ', testCoin.getBalanceOfAddress('mystery-address'));
 
-/*
-testCoin.addBlock(new Block (1,timestamp, {amount: 4}));  //hash is generated inside the block
+//testCoin.addBlock(new Block (1,timestamp, {amount: 4}));  //hash is generated inside the block
 
-testCoin.addBlock(new Block (2,timestamp, {amount: 10}));
+//testCoin.addBlock(new Block (2,timestamp, {amount: 10}));
 
 console.log("TSC ", testCoin );
 console.log("UIs chain valid 1: ", testCoin.validate());
@@ -37,7 +36,7 @@ console.log("UIs chain valid 1: ", testCoin.validate());
 console.log("current chain: ", testCoin.chain[1].hash );
 
 for (var i=1 ; i < testCoin.chain.length ; i++ ) {
-  console.log("Block: ", testCoin.chain[i].index," hash: ", testCoin.chain[i].hash )
+  console.log("Block: ", testCoin.chain[i]," hash: ", testCoin.chain[i].nonce )
 }
 // List our blockchain goodies...
 var ul = document.createElement('ul');
@@ -47,12 +46,13 @@ document.getElementById('renderList').appendChild(ul);
 testCoin.chain.forEach(renderChainList);
 
 function renderChainList(element, index, arr ) {
+  console.log("renderChainList: ", element )
   var li = document.createElement('li');
     li.setAttribute('class','item');
  
     ul.appendChild(li);
 
-    li.innerHTML=li.innerHTML +"<b>Block:</b> " + element.index + " <b>Hash:</b> " + element.hash + " <b>Balance:</b> " + element.data.amount;
+    li.innerHTML=li.innerHTML +"<b>Hash:</b> " + element.hash +" <b>Nonce:</b> "+ element.nonce + " <b>Timestamp:</b> " + element.timestamp;
 }//end render chain list
-*/
+
 </script>
