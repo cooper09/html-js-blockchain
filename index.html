@@ -1,0 +1,52 @@
+<!Doctype html>
+<head>
+  <script src='hmac-sha256.js'></script>
+  <script src='main.js'></script>  
+</head>
+<body>
+    My Blockchain
+    <div id="renderList"></div>
+</body>
+</html>
+<script>
+
+const timestamp =  new Date().getTime();
+
+let testCoin = new Blockchain();
+
+testCoin.addBlock(new Block (1,timestamp, {amount: 4}));  //hash is generated inside the block
+
+testCoin.addBlock(new Block (2,timestamp, {amount: 10}));
+
+console.log("TSC ", testCoin );
+console.log("UIs chain valid 1: ", testCoin.validate());
+
+testCoin.chain[1].data = {amount: 100000}
+
+console.log("change data: ", testCoin.validate());
+
+testCoin.chain[1].hash = testCoin.chain[1].createHash();
+console.log("change hash: ", testCoin.validate());
+
+console.log("current chain: ", testCoin.chain );
+
+for (var i=1 ; i < testCoin.chain.length ; i++ ) {
+  console.log("Block: ", testCoin.chain[i].index," hash: ", testCoin.chain[i].hash )
+}
+// List our blockchain goodies...
+var ul = document.createElement('ul');
+ul.setAttribute('id','blockChain');
+
+document.getElementById('renderList').appendChild(ul);
+testCoin.chain.forEach(renderChainList);
+
+function renderChainList(element, index, arr ) {
+  var li = document.createElement('li');
+    li.setAttribute('class','item');
+ 
+    ul.appendChild(li);
+
+    li.innerHTML=li.innerHTML +"<b>Block:</b> " + element.index + " <b>Hash:</b> " + element.hash + " <b>Balance:</b> " + element.data.amount;
+}//end render chain list
+
+</script>
